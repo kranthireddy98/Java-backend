@@ -1,0 +1,59 @@
+############################
+# Java / JVM
+############################
+*.class
+*.log
+
+############################
+# Build tools
+############################
+# Maven
+target/
+
+# Gradle
+build/
+.gradle/
+
+############################
+# IDEs
+############################
+# IntelliJ IDEA
+.idea
+out/
+
+*.lnk
+
+*.iml
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# VS Code
+.vscode/
+
+############################
+# OS generated files
+############################
+.DS_Store
+Thumbs.db
+
+############################
+# Environment / Secrets
+############################
+.env
+*.properties.local
+*.yml.local
+*.yaml.local
+
+############################
+# Test & coverage
+############################
+/coverage/
+/reports/
+
+############################
+# Logs
+############################
+logs/
