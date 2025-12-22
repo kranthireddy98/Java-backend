@@ -1,9 +1,11 @@
 package com.cache.db;
 
 
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
 
 public class DatabaseConnection {
@@ -22,10 +24,17 @@ public class DatabaseConnection {
 
     //1. Private constructor
     private DatabaseConnection () throws SQLException {
-        try {
+        Properties props = new Properties();
+        try(InputStream input = getClass().getClassLoader().getResourceAsStream("db.properties")) {
+           if(input ==null )
+           {
+               throw new RuntimeException("Unable to find db.properties");
+           }
+           props.load(input);
+
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            this.connection = DriverManager.getConnection(URL, USER, PASSWORD);;
-        } catch (ClassNotFoundException e) {
+            this.connection = DriverManager.getConnection(props.getProperty("db.url"), props.getProperty("db.user"), props.getProperty("db.password"));;
+        } catch (Exception e) {
             throw new RuntimeException("SQL Server Driver not found", e);
         }
     }
