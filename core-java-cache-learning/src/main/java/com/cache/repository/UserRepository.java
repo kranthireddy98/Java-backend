@@ -5,18 +5,19 @@ import com.cache.model.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class UserRepository {
 
-    public User gerUserById(int id) {
+    public User getUserById(int id) throws SQLException {
         String sql = "SELECT id,name FROM Users WHERE ID=?";
 
 
-        try (Connection con = DatabaseConnection.getConnection();
+        try(Connection con=DatabaseConnection.getInstance().getConnection();
+            PreparedStatement ps = con.prepareStatement(sql);) {
 
-             PreparedStatement ps = con.prepareStatement(sql)) {
 
-            Thread.sleep(1000);
+            //Thread.sleep(1000);
 
             ps.setInt(1, id);
 

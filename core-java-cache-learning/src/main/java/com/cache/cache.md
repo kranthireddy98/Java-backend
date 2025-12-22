@@ -16,7 +16,7 @@ In backend systems, caching primarily exists to reduce:
 - CPU consumption
 - Latency under concurrent access
 
-Caching is not about making slow queries fast.  
+Caching is not about making slow queries fast.
 Caching is about **avoiding unnecessary work altogether**.
 
 ---
@@ -99,6 +99,7 @@ Example:
 - Total wall-clock time ≈ 1 second
 
 This leads to a dangerous misconception:
+
 > “The system is fast, so it must be efficient.”
 
 In reality:
@@ -330,7 +331,7 @@ Building a correct cache requires solving:
 - Memory efficiency
 - Performance under contention
 
-Most hand-written caches fail under real production load.
+Most handwritten caches fail under real production load.
 
 This is why production systems rely on mature caching libraries.
 
@@ -379,4 +380,65 @@ Real systems often use a layered approach combining both.
 
 ---
 
-*End of document*
+## Caching Pattens
+
+1. cache-Aside (Lazy Loading)
+   How it works
+   Application controls the cache explicitly.
+   Read Flow:
+   App-> Cache->if Hit -> Return-> if Miss -> DB -> Cache - return
+   Write Flow:
+   App -> DB
+   App -> Evict/Update Cache
+2. Read -Through Cache
+   Application Never talks to DB directly
+   App -> Cache.
+   Cache -> DB(on miss)
+   Cache -> App
+
+3. Write-Through
+   Write go thought cache first, then to DB.
+    App -> Cache -> DB
+4. Write - Behind Cache
+    Writes go to cache first, DB later (async)
+    App -> Cache.
+    Cache -> DB (async)
+5. Refresh-Ahead (Refresh After Write)
+    Cache refreshes data before it expires
+    Request -> Old value returned
+    Background -> refresh from DB
+
+## Consistency Challenges
+
+1. Cache invalidation
+    Problem:
+    DB Updated, cache not Updated.
+    Solutions:
+   1. Evict Cache on write
+   2. Update cache on write
+   3. TTL as safety net
+   4. Event-based invalidation
+2. Cache Miss
+    Requested key not present in cache
+    Types:
+    Cold Miss (first load)
+    Capacity miss (evicted)
+    Expiry miss (TTL)
+    Problem:
+    DB hit
+    Latency spike
+    Solution:
+    Warm-up Cache
+    Refresh-ahead 
+    Prevent stampede
+3. Stale Data
+    Cache returns outdated value.
+    Causes:
+    Missing eviction
+    Long TTL
+    Async writes
+    
+
+## Cache Eviction Policies : LRU, LFU, TinyLFU
+
+

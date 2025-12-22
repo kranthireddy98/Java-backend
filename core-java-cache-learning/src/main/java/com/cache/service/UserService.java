@@ -6,6 +6,8 @@ import com.cache.cache.TTLCache;
 import com.cache.model.User;
 import com.cache.repository.UserRepository;
 
+import java.sql.SQLException;
+
 public class UserService {
 
     private UserRepository repository = new UserRepository();
@@ -14,7 +16,7 @@ public class UserService {
 
     private TTLCache<Integer,User> cacheTTL = new TTLCache<>(3,5000);
 
-    public User getUser(int id) {
+    public User getUser(int id) throws SQLException {
         if (cache.contains(id)) {
             System.out.println("CACHE HIT");
             return cache.get(id);
@@ -23,7 +25,7 @@ public class UserService {
 
         System.out.println("CACHE MISS -- DB CALL");
 
-        User user = repository.gerUserById(id);
+        User user = repository.getUserById(id);
 
         cache.put(id, user);
         return user;
@@ -32,7 +34,11 @@ public class UserService {
     public User getUserTTL(int id) {
         return  cacheTTL.get(id,key -> {
             System.out.println("DB CALL");
-            return repository.gerUserById(id);
+            try {
+                return repository.getUserById(id);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         });
     }
 
