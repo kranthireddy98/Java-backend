@@ -132,6 +132,10 @@ Real World Examples
 3. Executors.newFixedThreadPool()
 4. BeanFactory / ApplicationContext (Spring)
 
+
+## TODO
+--> Abstract factory
+
 # Interview Questions
 
 1. why Factory Pattern?
@@ -141,5 +145,5 @@ Real World Examples
 ## When SHOULD you use Factory?
 ✔ Object creation is complex 
 ✔ Many implementations
-✔ Need loose coupling
+✔ Need lose coupling
 ✔ Framework / library design
