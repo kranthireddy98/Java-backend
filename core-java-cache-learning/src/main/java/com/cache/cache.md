@@ -1,13 +1,15 @@
 # Core Java Caching with SQL Server
 
-*A complete theoretical guide from fundamentals to advanced concepts*
+*A complete theoretical guide from fundamentals to advanced concepts,
+written alongside the `core-java-cache-learning` codebase.*
 
 ---
 
 ## Chapter 1: Introduction to Caching
 
-Caching is a performance optimization technique that stores frequently accessed data in a faster storage layer so that
-future requests can be served without repeating expensive operations.
+Caching is a performance optimization technique that stores frequently accessed
+data in a faster storage layer so that future requests can be served without
+repeating expensive operations.
 
 In backend systems, caching primarily exists to reduce:
 
@@ -16,7 +18,7 @@ In backend systems, caching primarily exists to reduce:
 - CPU consumption
 - Latency under concurrent access
 
-Caching is not about making slow queries fast.
+Caching is **not** about making slow queries fast.  
 Caching is about **avoiding unnecessary work altogether**.
 
 ---
@@ -25,6 +27,7 @@ Caching is about **avoiding unnecessary work altogether**.
 
 A typical backend system without caching follows this flow:
 
+```
 Client Request
 ↓
 Service Layer
@@ -32,23 +35,20 @@ Service Layer
 Repository Layer
 ↓
 SQL Server
-
-yaml
-Copy code
+```
 
 In this architecture:
 
 - Every request reaches SQL Server
-- SQL Server executes queries repeatedly
+- SQL Server executes the same queries repeatedly
 - Application performance is tightly coupled to database performance
 
 Even when:
-
-- Indexes are present
+- Indexes exist
 - Execution plans are cached
 - Data pages are in memory
 
-The database still performs query execution for every request.
+The database still performs **query execution** for every request.
 
 ---
 
@@ -64,10 +64,9 @@ SQL Server is optimized for:
 However, SQL Server is **not designed to absorb unlimited duplicate reads**.
 
 Each query execution involves:
-
 - CPU cycles
 - Buffer pool usage
-- Lock management
+- Lock and latch management
 - Query scheduling
 
 Under high concurrency, even simple `SELECT` queries can become a bottleneck.
@@ -76,13 +75,12 @@ Under high concurrency, even simple `SELECT` queries can become a bottleneck.
 
 ## Chapter 4: Understanding Concurrency in Backend Systems
 
-In realDB systems rarely handle one request at a time.
+Real backend systems rarely handle one request at a time.
 
-In real production environments:
-
+In production:
 - Multiple users send requests simultaneously
 - Many requests ask for the same data
-- Requests arrive in bursts
+- Traffic arrives in bursts
 
 Concurrency exposes problems that are invisible in single-threaded testing.
 
@@ -93,9 +91,8 @@ Concurrency exposes problems that are invisible in single-threaded testing.
 Parallel execution can make systems *appear* fast.
 
 Example:
-
 - One database query takes 1 second
-- Five queries run in parallel
+- Five identical queries run in parallel
 - Total wall-clock time ≈ 1 second
 
 This leads to a dangerous misconception:
@@ -103,10 +100,9 @@ This leads to a dangerous misconception:
 > “The system is fast, so it must be efficient.”
 
 In reality:
-
 - The database executed the same query multiple times
 - CPU and memory usage multiplied
-- The system does not scale linearly
+- Scalability is poor
 
 Parallelism hides latency but **multiplies workload**.
 
@@ -117,25 +113,23 @@ Parallelism hides latency but **multiplies workload**.
 Connection pooling is often misunderstood as a performance solution.
 
 ### What Connection Pooling Does
-
 - Reuses physical database connections
 - Avoids repeated TCP handshakes
 - Reduces authentication overhead
 
 ### What Connection Pooling Does Not Do
+- Does not reduce the number of queries
+- Does not reduce SQL Server CPU usage
+- Does not prevent duplicate reads
+- Does not prevent contention
 
-- It does not reduce the number of queries
-- It does not reduce CPU usage in SQL Server
-- It does not prevent duplicate reads
-- It does not prevent contention
+Mental model:
 
-Key mental model:
+```
+Connection Pool → HOW the application connects
+Cache → WHETHER the application connects
+```
 
-Connection Pool → HOW the application connects to the database
-Cache → WHETHER the application connects to the database
-
-yaml
-Copy code
 
 Connection pools improve efficiency, not scalability.
 
@@ -148,15 +142,12 @@ Correct performance measurement under concurrency requires:
 - Measuring total wall-clock time
 - Waiting for all parallel tasks to complete
 
-Short response time does not imply low resource usage.
+Short response time does **not** imply low resource usage.
 
 A system can have:
-
 - Acceptable latency
 - Severe backend stress
 - Poor scalability
-
-This distinction is critical in backend design.
 
 ---
 
@@ -168,7 +159,7 @@ The natural first idea of caching is:
 - Serve subsequent requests from memory
 - Avoid repeated database calls
 
-This approach typically uses in-memory data structures such as maps.
+This is commonly implemented using in-memory maps.
 
 In single-threaded scenarios, this appears to work correctly.
 
@@ -176,33 +167,29 @@ In single-threaded scenarios, this appears to work correctly.
 
 ## Chapter 9: Naive Caching and Its Limitations
 
-Naive caching usually involves:
+Naive caching typically involves:
 
 - Checking if data exists in memory
 - Fetching from the database if it does not
 - Storing the result for future use
 
-This approach fails under concurrency due to race conditions.
+This approach fails under concurrency.
 
-Multiple threads can observe the cache as empty simultaneously and all proceed to the database.
+Multiple threads can see the cache as empty simultaneously and all hit the database.
 
 ---
 
 ## Chapter 10: Race Conditions in Caching
 
 A race condition occurs when:
-
 - Multiple threads read and write shared data
 - The outcome depends on execution timing
 
 In naive caching:
+- Cache lookup and population are separate steps
+- No atomicity exists
 
-- Cache lookup and cache population are separate steps
-- There is no atomicity
-- Threads interfere with each other
-
-This leads to:
-
+This causes:
 - Duplicate database calls
 - Inconsistent cache state
 - Unpredictable behavior
@@ -211,58 +198,45 @@ This leads to:
 
 ## Chapter 11: Cache Stampede Problem
 
-Cache stampede is a well-known caching failure pattern.
-
-It occurs when:
-
+Cache stampede occurs when:
 - Cache is empty or expired
 - Many threads request the same data simultaneously
 - All threads hit the database at once
 
-This causes:
-
+Consequences:
 - Sudden database overload
 - Cascading failures
 - Timeouts and retries
 
-Preventing stampede is a core requirement of any real cache.
+Preventing stampede is a **core requirement** of real caches.
 
 ---
 
 ## Chapter 12: Thread Safety in Caching
 
-Thread safety is essential in caching because:
+Caching is inherently concurrent.
 
-- Caches are shared resources
-- Reads and writes occur concurrently
-- Incorrect synchronization causes corruption
-
-Using non-thread-safe data structures in a concurrent cache can result in:
-
-- Data inconsistency
+Using non-thread-safe data structures can result in:
+- Data corruption
 - Infinite loops
 - Application crashes
 
-Thread safety alone, however, is not sufficient.
+Thread safety alone, however, is **not sufficient**.
 
 ---
 
 ## Chapter 13: Atomic Cache Loading
 
 A correct cache must ensure:
-
 - Only one thread loads data for a key
 - Other threads wait or reuse the result
 
-This concept is known as **atomic cache population**.
+This is called **atomic cache population**.
 
-Atomicity ensures:
-
+Benefits:
 - Exactly one database call per key
-- Predictable behavior under load
-- Protection against stampede
-
-This is a fundamental principle of caching.
+- Predictable behavior
+- Stampede prevention
 
 ---
 
@@ -270,15 +244,12 @@ This is a fundamental principle of caching.
 
 An unbounded cache grows indefinitely.
 
-Problems caused by unbounded caches:
-
+Problems:
 - Increased heap usage
-- Garbage collection pressure
+- GC pressure
 - OutOfMemoryError
 
-A real cache must enforce limits.
-
-Caching without eviction is a memory leak disguised as optimization.
+Caching without eviction is a **memory leak disguised as optimization**.
 
 ---
 
@@ -287,158 +258,138 @@ Caching without eviction is a memory leak disguised as optimization.
 Cached data becomes outdated over time.
 
 Without expiration:
-
 - Stale data persists indefinitely
 - System correctness degrades
-- Inconsistencies appear
 
 Expiration introduces trade-offs:
-
 - Short TTL → more DB calls
 - Long TTL → stale data risk
 
-Choosing TTL is a business decision, not just a technical one.
+TTL is a **business decision**, not just a technical one.
 
 ---
 
-## Chapter 16: Eviction Strategies
+## Chapter 16: Cache Eviction Strategies
 
-When cache reaches capacity, entries must be evicted.
+When a cache reaches capacity, entries must be evicted.
 
-Common strategies:
+### LRU (Least Recently Used)
+Evicts entries that have not been accessed recently.  
+Fails under scan-heavy workloads.
 
-- Least Recently Used (LRU)
-- Least Frequently Used (LFU)
+### LFU (Least Frequently Used)
+Evicts entries used least often.  
+Fails due to old popularity bias.
 
-Naive eviction strategies fail under real traffic patterns such as scans and bursts.
-
-Modern caches use advanced algorithms to balance:
-
+### TinyLFU (Modern Approach)
+Balances:
 - Recency
 - Frequency
 - Memory efficiency
+
+Used by modern caches like **Caffeine**.
 
 ---
 
 ## Chapter 17: Why Writing a Cache Is Hard
 
-Building a correct cache requires solving:
-
+A correct cache must handle:
 - Thread safety
 - Atomic loading
 - Eviction
-- Expiration
+- Expiry
 - Memory efficiency
 - Performance under contention
 
 Most handwritten caches fail under real production load.
 
-This is why production systems rely on mature caching libraries.
-
 ---
 
 ## Chapter 18: Why Libraries Like Caffeine Exist
 
-Libraries like Caffeine exist because they:
-
-- Implement advanced eviction algorithms
+Libraries like Caffeine:
+- Implement advanced eviction (TinyLFU)
 - Optimize for concurrency
 - Avoid global locks
 - Prevent stampede
 - Handle expiry efficiently
 
-They are the result of years of research and production experience.
+They are the result of years of research and production tuning.
 
 ---
 
 ## Chapter 19: In-Memory Cache vs Distributed Cache
 
-In-memory caches:
-
+### In-Memory Cache
 - Extremely fast
 - JVM-local
 - Lost on restart
 
-Distributed caches (e.g., Redis):
-
+### Distributed Cache (Redis)
 - Shared across services
-- Survive restarts
-- Introduce network latency
+- Survives restarts
+- Adds network latency
 
-Real systems often use a layered approach combining both.
+Real systems often use **layered caching (L1 + L2)**.
 
 ---
 
-## Chapter 20: Key Takeaways
+## Chapter 20: Caching Patterns
 
-1. Caching is about avoiding work, not speeding it up
-2. Concurrency exposes hidden performance issues
-3. Connection pooling and caching solve different problems
-4. Naive caching fails under real load
-5. Correct caching requires atomicity, eviction, and expiry
+### Cache-Aside (Lazy Loading)
+- App controls cache explicitly
+- Most common pattern
+
+### Read-Through
+- App never talks to DB directly
+- Cache loads data on miss
+
+### Write-Through
+- Writes go to cache first, then DB
+
+### Write-Behind
+- Writes go to cache
+- DB updated asynchronously
+
+### Refresh-Ahead
+- Cache refreshes data before expiry
+- Old value served during refresh
+
+---
+
+## Chapter 21: Consistency Challenges
+
+### Cache Invalidation
+DB updated but cache not updated.
+
+Solutions:
+- Evict on write
+- Update on write
+- TTL as safety net
+- Event-based invalidation
+
+### Cache Miss
+Types:
+- Cold miss
+- Capacity miss
+- Expiry miss
+
+### Stale Data
+Caused by:
+- Missing eviction
+- Long TTL
+- Async writes
+
+Consistency is always a **trade-off**.
+
+---
+
+## Chapter 22: Key Takeaways
+
+1. Caching avoids work, not speeds it up
+2. Concurrency reveals hidden failures
+3. Connection pooling ≠ caching
+4. Naive caches fail at scale
+5. TTL and eviction are mandatory
 6. Mature libraries exist for a reason
-
----
-
-## Caching Pattens
-
-1. cache-Aside (Lazy Loading)
-   How it works
-   Application controls the cache explicitly.
-   Read Flow:
-   App-> Cache->if Hit -> Return-> if Miss -> DB -> Cache - return
-   Write Flow:
-   App -> DB
-   App -> Evict/Update Cache
-2. Read -Through Cache
-   Application Never talks to DB directly
-   App -> Cache.
-   Cache -> DB(on miss)
-   Cache -> App
-
-3. Write-Through
-   Write go thought cache first, then to DB.
-    App -> Cache -> DB
-4. Write - Behind Cache
-    Writes go to cache first, DB later (async)
-    App -> Cache.
-    Cache -> DB (async)
-5. Refresh-Ahead (Refresh After Write)
-    Cache refreshes data before it expires
-    Request -> Old value returned
-    Background -> refresh from DB
-
-## Consistency Challenges
-
-1. Cache invalidation
-    Problem:
-    DB Updated, cache not Updated.
-    Solutions:
-   1. Evict Cache on write
-   2. Update cache on write
-   3. TTL as safety net
-   4. Event-based invalidation
-2. Cache Miss
-    Requested key not present in cache
-    Types:
-    Cold Miss (first load)
-    Capacity miss (evicted)
-    Expiry miss (TTL)
-    Problem:
-    DB hit
-    Latency spike
-    Solution:
-    Warm-up Cache
-    Refresh-ahead 
-    Prevent stampede
-3. Stale Data
-    Cache returns outdated value.
-    Causes:
-    Missing eviction
-    Long TTL
-    Async writes
-    
-
-## Cache Eviction Policies : LRU, LFU, TinyLFU
-
 
