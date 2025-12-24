@@ -1,6 +1,6 @@
 # Caffeine Cache
 
-```java
+```
  Caffeine.newBuilder()
                     .maximumSize(10_000)//Eviction
                     .expireAfterWrite(30,TimeUnit.MINUTES)//Hard TTL
