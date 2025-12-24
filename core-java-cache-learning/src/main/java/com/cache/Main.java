@@ -4,21 +4,24 @@ import com.cache.model.User;
 import com.cache.repository.UserRepository;
 import com.cache.service.CaffeineUserService;
 import com.cache.service.ConcurentUserService;
+import com.cache.service.RedisUserService;
 import com.cache.service.UserService;
 
+import java.sql.SQLException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 public class Main {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, SQLException {
 
 
         /*concurrentHashMap();
         userTTL();*/
         //caffeineUser();
-        asyncCaffeineUser();
+        //asyncCaffeineUser();
+        redisTest();
 
     }
 
@@ -74,6 +77,18 @@ public class Main {
 
 
     }
+
+    public static void redisTest() throws SQLException {
+
+        RedisUserService redisUserService = new RedisUserService();
+
+        redisUserService.getUser(1); // DB
+        redisUserService.getUser(1); // Redis
+        redisUserService.getUser(1); // Redis
+
+        redisUserService.close();
+    }
+
 
     static void concurrentHashMap() throws InterruptedException {
         UserRepository repo = new UserRepository();
