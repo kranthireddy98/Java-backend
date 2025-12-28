@@ -31,4 +31,7 @@ public class UserRepository {
         }
         return null;
     }
+
+    public void updateUser(User user) {
+    }
 }

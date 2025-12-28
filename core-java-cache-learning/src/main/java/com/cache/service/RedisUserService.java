@@ -40,6 +40,17 @@ public class RedisUserService {
         return user;
     }
 
+    public User getIfPresent(int userId) {
+        String key = USER_KEY_PREFIX + userId;
+        String cachedValue = jedis.get(key);
+        return cachedValue != null ? deserialize(cachedValue) : null;
+    }
+
+
+    public void put(int userId, User user) {
+        jedis.setex(USER_KEY_PREFIX + userId, TTL_SECONDS, serialize(user));
+    }
+
     private String serialize(User user) {
         return user.getId() + "," + user.getName();
     }
@@ -52,5 +63,8 @@ public class RedisUserService {
 
     public void close() {
         jedis.close();
+    }
+
+    public void evictUser(int id) {
     }
 }

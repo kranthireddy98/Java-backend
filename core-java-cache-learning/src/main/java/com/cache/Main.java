@@ -2,10 +2,7 @@ package com.cache;
 
 import com.cache.model.User;
 import com.cache.repository.UserRepository;
-import com.cache.service.CaffeineUserService;
-import com.cache.service.ConcurentUserService;
-import com.cache.service.RedisUserService;
-import com.cache.service.UserService;
+import com.cache.service.*;
 
 import java.sql.SQLException;
 import java.util.concurrent.ExecutorService;
@@ -21,9 +18,22 @@ public class Main {
         userTTL();*/
         //caffeineUser();
         //asyncCaffeineUser();
-        redisTest();
+       // redisTest();
+        l1L2Test();
 
     }
+
+    static void l1L2Test() throws SQLException {
+
+        L1L2UserService service = new L1L2UserService();
+
+        service.getUser(1); // DB
+        service.getUser(1); // L1
+        service.getUser(1); // L1
+
+        service.shutdown();
+    }
+
 
     static void asyncCaffeineUser() throws InterruptedException {
         UserRepository repo = new UserRepository();

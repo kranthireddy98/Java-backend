@@ -65,5 +65,16 @@ public class CaffeineUserService {
             }
         });
     }
+    public User getIfPresent(int id) {
+        return asyncCache.synchronous().getIfPresent(id);
+    }
 
+    public void put(int userId,User user)
+    {
+        asyncCache.synchronous().put(userId,user);
+    }
+
+    public void evict(int id) {
+        asyncCache.synchronous().invalidate(id);
+    }
 }
