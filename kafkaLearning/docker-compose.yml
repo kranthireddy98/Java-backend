@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  kafka:
+    image: apache/kafka:latest
+    container_name: kafka
+    ports:
+      - "9092:9092"
+    environment:
+      # KAFKA broker/controller configuration for KRaft mode
+      KAFKA_NODE_ID: 1
+      KAFKA_LISTENERS: PLAINTEXT://:9092,BROKER://:9093
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092,BROKER://kafka:9093
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,BROKER:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: BROKER
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      # Generate a random cluster ID (for local development only)
+      CLUSTER_ID: Mk3OEYBSD34fcwNTJENDM2Qk # Replace with a random UUID, e.g. from 'kafka-storage.sh random-uuid'
+      KAFKA_LOG_DIRS: /var/lib/kafka/data
+    volumes:
+      - ./data:/var/lib/kafka/data # Persist data on your host machine

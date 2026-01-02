@@ -1,0 +1,39 @@
+1. Why was Spring framework created?
+2. What problem existed before Spring?
+3. Why is tight coupling bad?
+4. Why is the new keyword dangerous in large applications?
+5. Is new always bad?
+6. Where is new still acceptable?
+7. What is Inversion of Control (IoC)?
+8. Who controls object creation in IoC?
+9. Is IoC specific to Spring?
+10. What is Dependency Injection (DI)?
+11. Types of dependency injection?
+12. Which is preferred and why?
+13. Difference between IoC and DI?
+14. How does Spring improve testability?
+15. How do you inject mocks?
+16. Have you used Mockito with Spring?
+17. What does Spring container do?
+18. Name two Spring containers
+19. When are beans created?
+
+20. What is Spring Container?
+21. What are the types of containers?
+22. Which one is used in Spring Boot?
+23. Difference between Bean factory and Application Context?
+24. What is a Spring Bean?
+25. When are Spring Beans Created?
+26. How to make Lazy?
+27. What about prototype beans?
+28. How does Spring resolve dependencies?
+29. Why Application Context is Preferred Over Bean Factory?
+
+30. Explain Spring Bean Lifecycle
+31. When is @PostConstruct called?
+32. Difference between @PostConstruct and InitializingBean?
+33. How do you  execute logic before application shutdown?
+34. Are Lifecycle methods called for prototype beans?
+35. What is BeanPostProcessor?
+36. Which lifecycle hook is most recommended?
+37. 
