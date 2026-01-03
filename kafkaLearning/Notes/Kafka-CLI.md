@@ -32,7 +32,7 @@ services:
 
 ### Create a topic
 * bin/kafka-topics.sh --bootstrap-server localhost:9092 --create --topic javalearning-topic --partitions 3 --replication-factor 1
-*  kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic test-topic (docker)
+*  kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 3 --topic test-topic2 (docker)
 
 ### Producer
 * bin/kafka-console-producer.sh --broker-list localhost:9092 --topic javalearning-topic

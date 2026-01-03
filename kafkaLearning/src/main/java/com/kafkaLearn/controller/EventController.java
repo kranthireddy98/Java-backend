@@ -27,4 +27,19 @@ public class EventController {
         }
     }
 
+    @GetMapping("/Publish/bulk/{message}")
+    public ResponseEntity<?> bulkPublishMessage(@PathVariable String message)
+    {
+        try {
+            for (int i =0; i<10000;i++)
+            {
+                publisher.sendMessageToTopic(message + ": "+i);
+            }
+
+            return ResponseEntity.ok("message published successfully");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
 }
