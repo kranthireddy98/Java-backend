@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<bean id="computer" class="com.SpringFrameIntro.Computer" scope="singleton">
+
+    <!-- default values-->
+    <property name="model" value="2025"></property>
+    <!--For reference types use ref not value-->
+    <property name="laptop" ref="laptop"></property>
+</bean>
+
+    <bean id="laptop" class="com.SpringFrameIntro.Laptop" scope="singleton">
+        <!--Constructor injection-->
+        <constructor-arg name="make" value="Hp"></constructor-arg>
+        <constructor-arg name="chip" ref="chip"></constructor-arg>
+    </bean>
+
+    <bean id="chip" class="com.SpringFrameIntro.Chip" ></bean>
+
+<!--    <bean id="kid" class="com.SpringFrameIntro.Vehicles.Kid" autowire="byName">-->
+<!--        <property name="age" value="16"></property>-->
+<!--    </bean>-->
+
+    <bean id="kid" class="com.SpringFrameIntro.Vehicles.Kid" autowire="byType">
+        <property name="age" value="16"></property>
+    </bean>
+
+    <!--bus and bike is extending the Vehicle -->
+    <bean id="bus" class="com.SpringFrameIntro.Vehicles.Bus" primary="true"></bean>
+    <bean id="bike" class="com.SpringFrameIntro.Vehicles.Bike" ></bean>
+
+</beans>
