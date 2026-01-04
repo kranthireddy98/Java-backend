@@ -93,3 +93,71 @@ public class RunnableInterface implements Runnable{
 4. getPriority()
 5. setPriority()
 6. sleep()
+
+
+## 8. What is the difference between start() and run() method?
+```java
+Thread myThread = new Thread(() -> {
+    System.out.println("Running in: " + Thread.currentThread().getName());
+});
+
+// Case 1: Calling run()
+myThread.run(); // Prints: Running in: main
+
+// Case 2: Calling start()
+myThread.start(); // Prints: Running in: Thread-0
+```
+| Feature | `thread.start()` | `thread.run()` |
+| :--- | :--- | :--- |
+| **New Thread** | Creates a **new** separate thread. | Does **not** create a new thread. |
+| **Call Stack** | Allocates a **new call stack**. | Uses the **existing call stack**. |
+| **Execution** | Code executes **asynchronously**. | Code executes **synchronously**. |
+| **Invocation** | Triggers JVM to call `run()`. | Manually calls a regular method. |
+| **Multi-threading**| Enables true parallelism. | No multithreading occurs. |
+| **State Transition**| Moves thread to **Runnable** state. | No state change occurs. |
+| **Repeat Calls** | Throws `IllegalThreadStateException`. | Can be called multiple times. |
+
+
+## 9. What is meaning of Thread safe?
+* Thread-safe means that a piece of code or a class ot a function can be safely invoked and used by
+**multipleThreads simultaneously without causing any error** (race conditions, data corruption,or unexpected behaviour)
+
+## 10. A Thread pool?
+* pool of threads that are ready to execute tasks.
+* to reuse the existing threads to avoid thread creation overhead
+
+## 11. what is synchronized block in java?
+```java
+public class Syncronized{
+    private  int count =0;
+    
+    private final Object lock = new Object();
+    
+    public void increment()
+    {
+        synchronized (lock)
+        {
+            count++;
+        }
+    }
+}
+```
+
+* Synchronized (lock) ensures that only one thread at a time can execute the block of code.
+
+## 12. Difference between the Runnable and callable?
+* Runnable does not return a result and cannot throw checked exception
+```java
+
+    @FunctionalInterface
+    public interface Runnable{
+    void run();
+    }
+```
+* Callable return a result and can throw checked exception
+```java
+    @FunctionalInterface
+    public interface Callable<Integer>{
+    Integer call() throws Exception;
+}
+```
