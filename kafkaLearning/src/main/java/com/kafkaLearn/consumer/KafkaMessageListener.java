@@ -1,9 +1,11 @@
 package com.kafkaLearn.consumer;
 
+import com.kafkaLearn.dto.Customer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.annotation.TopicPartition;
 import org.springframework.kafka.config.KafkaListenerEndpointRegistry;
 import org.springframework.stereotype.Service;
 
@@ -72,5 +74,14 @@ public class KafkaMessageListener {
             return;
         }
         logger.info("consumer4 consumed the message {} ",message);
+    }
+
+
+    //Specify specific partition  topicPartitions = {@TopicPartition(topic = "java-topic-customer",partitions = {"2"})}
+    @KafkaListener(id = "customer-consumer0", topics = "java-topic-customer",groupId = "group-customer",
+            topicPartitions = {@TopicPartition(topic = "java-topic-customer",partitions = {"2"})})
+    public void customerConsumer(Customer customer)
+    {
+        logger.info("Customer : {}" ,customer.toString());
     }
 }

@@ -3,6 +3,8 @@ package com.springLearn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+
 @Component
 public class Human {
 
@@ -11,6 +13,7 @@ public class Human {
 
     public void code()
     {
+
         laptop.compile();
     }
 }

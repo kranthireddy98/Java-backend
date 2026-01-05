@@ -17,7 +17,7 @@
 17. What does Spring container do?
 18. Name two Spring containers
 19. When are beans created?
-
+# Spring Container
 20. What is Spring Container?
 21. What are the types of containers?
 22. Which one is used in Spring Boot?
@@ -28,7 +28,7 @@
 27. What about prototype beans?
 28. How does Spring resolve dependencies?
 29. Why Application Context is Preferred Over Bean Factory?
-
+# bean Lifecycle
 30. Explain Spring Bean Lifecycle
 31. When is @PostConstruct called?
 32. Difference between @PostConstruct and InitializingBean?
@@ -36,4 +36,29 @@
 34. Are Lifecycle methods called for prototype beans?
 35. What is BeanPostProcessor?
 36. Which lifecycle hook is most recommended?
-37. 
+# Stereotypes
+37. what are Spring stereotype annotations?
+38. Difference between `@Component` and `@Service`?
+39. What special behaviour does `@Respository` provides?
+40. Why does Spring need different stereotypes?
+41. can you use `@Component` instead of `@Service` or `@Repository`
+42. Difference between `@Controllr` and `@Restcontroller`
+43. How spring MVC detect controller classes?
+# Dependency Injection
+44. What is Dependency Injection?
+45. How Does Spring implement Di?
+46. What problems does DI solve?
+47. What are the types of dependency injection Spring Supports?
+48. Which one is preferred and why?
+49. Why is constructor injection recommended?
+50. what happens if a dependency is missing?
+51. can constructor injection cause circular dependency?
+52. why is field injection discouraged?
+53. is field injection ever acceptable?
+54. How does spring handle circular dependency?
+55. Why constructor injection fails?
+56. How would you redesign to avoid circular dependency?
+57. What is @Qualifier and why is it used?
+58. Difference between @Primary and @Qualifier?
+59. Can Spring inject optional dependencies?
+60. when should dependencies be optional?

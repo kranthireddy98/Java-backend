@@ -5,4 +5,7 @@
 5. Application Context
 6. Spring container
 7. Autowire
-8. 
+
+
+Lesson 4 --> Stereotypes
+Lesson 5 --> Dependency Injection

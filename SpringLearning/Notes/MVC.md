@@ -14,7 +14,9 @@ Request --> |Dispatch Servlet --> User Controller|
 * addNumber(@RequestParam("num1") int num1,@RequestParam("num2") int num2,HttpSession session )
 * ``` 
   ModelAndView mv = new ModelAndView();
-        mv.setViewName("result"); ```
-  
+        mv.setViewName("result"); 
+  ```
+
+
 
   

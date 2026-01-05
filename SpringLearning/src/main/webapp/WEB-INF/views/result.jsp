@@ -8,5 +8,9 @@ pageEncoding="UTF-8"%>
 </head>
 <body>
     Result is : ${sum}
+    <br>
+    User is : ${user}
+    <br>
+    User Back As ${name}
 </body>
 </html>

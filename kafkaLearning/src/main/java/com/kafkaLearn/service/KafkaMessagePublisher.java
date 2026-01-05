@@ -1,5 +1,6 @@
 package com.kafkaLearn.service;
 
+import com.kafkaLearn.dto.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
@@ -26,6 +27,23 @@ public class KafkaMessagePublisher {
                        message + "] due to : " + ex.getMessage());
            }
        });
+
+    }
+
+    public void sendMessageToTopic(Customer customer)
+    {
+        // Send overloaded method - can pass specific partition
+        CompletableFuture<SendResult<String,Object>> future = template.send("java-topic-customer",customer);
+        future.whenComplete((result,ex) ->{
+            if(ex==null)
+            {
+                System.out.println("Sent Message=[" + customer+"] with offset" +
+                        "=["+result.getRecordMetadata().offset()+"]");
+            } else {
+                System.out.println("Unable send message=[" +
+                        customer + "] due to : " + ex.getMessage());
+            }
+        });
 
     }
 

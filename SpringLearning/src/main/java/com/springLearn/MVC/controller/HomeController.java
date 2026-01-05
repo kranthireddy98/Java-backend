@@ -1,8 +1,11 @@
 package com.springLearn.MVC.controller;
 
+import com.springLearn.jdbc.model.User;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -18,6 +21,7 @@ public class HomeController {
 
     }
 
+    // HttpServletRequest
     @RequestMapping("addnum")
     public String add(HttpServletRequest req)
     {
@@ -32,9 +36,11 @@ public class HomeController {
         return "result";
     }
 
+    // Request param and session
     @RequestMapping("add2")
     public String addNumber(@RequestParam("num1") int num1,@RequestParam("num2") int num2,HttpSession session )
     {
+
 
         int sum = num2+num1;
 
@@ -43,7 +49,8 @@ public class HomeController {
         return "result";
     }
 
-    @RequestMapping("add")
+    //ModelAndView
+    @RequestMapping("addMv")
     public ModelAndView addNumberMv(@RequestParam("num1") int num1,@RequestParam("num2") int num2 )
     {
         ModelAndView mv = new ModelAndView();
@@ -53,4 +60,46 @@ public class HomeController {
 
         return mv;
     }
+
+    // Model
+    @RequestMapping("add")
+    public String  addNumberModel(@RequestParam("num1") int num1, @RequestParam("num2") int num2,Model m)
+    {
+
+        int sum = num2+num1;
+        m.addAttribute("sum",sum);
+
+        return "result";
+    }
+
+    @RequestMapping("addUser1")
+    public  String Adduser(@RequestParam("age") int age,@RequestParam("name") String name,Model m)
+    {
+        User user = new User();
+
+        user.setAge(age);
+        user.setName(name);
+        m.addAttribute("user",user);
+
+        return "result";
+    }
+
+    //Model Attribute
+    @RequestMapping("addUser")
+    public  String AdduserModelAttribute(@ModelAttribute User user)
+    {
+
+        return "result";
+    }
+
+    //Model attribute at method level
+    @ModelAttribute
+    public void modelData(Model m)
+    {
+        m.addAttribute("name","Aliens");
+    }
+
+
+
+
 }

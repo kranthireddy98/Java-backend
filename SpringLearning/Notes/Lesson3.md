@@ -60,6 +60,8 @@ Dependency Injection;
 * used to close resources
 
 ## InitializingBean & DisposableBean
+* Tightly Coupled to spring
+* Less preferred in modern apps
 ```java
 @Component
 class MyBean implements InitializingBean, DisposableBean {
@@ -75,6 +77,7 @@ class MyBean implements InitializingBean, DisposableBean {
 
 ```
 ## Custom Init & Destroy Methods
+* Useful when you don't own the class
 ```java
 @Bean(initMethod = "start", destroyMethod = "stop")
 public Server server() {
