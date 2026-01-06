@@ -30,7 +30,7 @@ public class KafkaMessagePublisher {
 
     }
 
-    public void sendMessageToTopic(Customer customer)
+    public void sendCustomerMessageToTopic(Customer customer)
     {
         // Send overloaded method - can pass specific partition
         CompletableFuture<SendResult<String,Object>> future = template.send("java-topic-customer",customer);

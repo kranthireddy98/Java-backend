@@ -77,11 +77,21 @@ public class KafkaMessageListener {
     }
 
 
+    /*//Specify specific partition  topicPartitions = {@TopicPartition(topic = "java-topic-customer",partitions = {"2"})}
+    @KafkaListener(id = "customer-consumer", topics = "java-topic-customer",groupId = "group-customer")
+    public void customerConsumer(Customer customer)
+    {
+        logger.info("Customer consumed Event : {}" ,customer.toString());
+    }
+
     //Specify specific partition  topicPartitions = {@TopicPartition(topic = "java-topic-customer",partitions = {"2"})}
     @KafkaListener(id = "customer-consumer0", topics = "java-topic-customer",groupId = "group-customer",
             topicPartitions = {@TopicPartition(topic = "java-topic-customer",partitions = {"2"})})
-    public void customerConsumer(Customer customer)
+    public void customerConsumer1(Customer customer)
     {
         logger.info("Customer : {}" ,customer.toString());
-    }
+    }*/
+
+
+
 }

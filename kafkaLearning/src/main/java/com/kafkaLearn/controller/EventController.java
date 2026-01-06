@@ -43,7 +43,7 @@ public class EventController {
     @PostMapping("/publish/customer")
     public void sendCustomerEvent(@RequestBody Customer customer)
     {
-        publisher.sendMessageToTopic(customer);
+        publisher.sendCustomerMessageToTopic(customer);
     }
 
 }

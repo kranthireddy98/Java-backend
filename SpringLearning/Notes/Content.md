@@ -8,4 +8,7 @@
 
 
 Lesson 4 --> Stereotypes
+
 Lesson 5 --> Dependency Injection
+
+Lesson 6 --> Autowiring 

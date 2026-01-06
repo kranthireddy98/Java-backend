@@ -13,10 +13,10 @@ import org.springframework.kafka.core.ProducerFactory;
 import java.util.HashMap;
 import java.util.Map;
 
-@Configuration
+//@Configuration
 public class KafkaProducerConfig {
 
-    @Bean
+  /*  @Bean
     public NewTopic createTopic() {
         return new NewTopic("java-topic-customer", 3, (short) 1);
     }
@@ -39,5 +39,5 @@ public class KafkaProducerConfig {
     @Bean
     public KafkaTemplate<String, Object> kafkaTemplate() {
         return new KafkaTemplate<>(producerFactory());
-    }
+    }*/
 }

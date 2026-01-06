@@ -62,3 +62,19 @@
 58. Difference between @Primary and @Qualifier?
 59. Can Spring inject optional dependencies?
 60. when should dependencies be optional?
+# Autowiring
+61. How does Spring resolve dependencies during autowiring?
+62. Which takes precedence `@Qualifier` or `@Primary`?
+63. Difference between `@Qualifier` and `@Primary`?
+64. when you would prefer `@Qualifier`?
+65. is `@Autowired` mandatory for constructor injection?
+66. What if there are multiple constructors?
+67. How do you inject optional dependencies?
+68. which approach is recommended?
+69. How does spring inject multiple implementations of an interface?
+70. How are beans ordered in a list?
+71. What happens if Spring cannot resolve a dependency?
+72. why is failing fast important?
+73. can autowiring cause circular dependencies?
+74. why constructor injection fails for circular dependencies?
+75. 
