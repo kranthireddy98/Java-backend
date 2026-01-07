@@ -29,7 +29,7 @@ public class EventController {
     public ResponseEntity<?> bulkPublishMessage(@PathVariable String message)
     {
         try {
-            for (int i =0; i<100000;i++)
+            for (int i =0; i<1000;i++)
             {
                 publisher.sendMessageToTopic(message + ": "+i);
             }

@@ -4,9 +4,14 @@ import com.kafkaLearn.dto.Customer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.annotation.DltHandler;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.annotation.RetryableTopic;
 import org.springframework.kafka.annotation.TopicPartition;
 import org.springframework.kafka.config.KafkaListenerEndpointRegistry;
+import org.springframework.kafka.support.KafkaHeaders;
+import org.springframework.messaging.handler.annotation.Header;
+import org.springframework.retry.annotation.Backoff;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -77,14 +82,37 @@ public class KafkaMessageListener {
     }
 
 
-    /*//Specify specific partition  topicPartitions = {@TopicPartition(topic = "java-topic-customer",partitions = {"2"})}
-    @KafkaListener(id = "customer-consumer", topics = "java-topic-customer",groupId = "group-customer")
+    //Specify specific partition  topicPartitions = {@TopicPartition(topic = "java-topic-customer",partitions = {"2"})}
+    @KafkaListener(id = "customer-consumer0", topics = "java-topic-customer1",groupId = "group-customer")
     public void customerConsumer(Customer customer)
     {
+
         logger.info("Customer consumed Event : {}" ,customer.toString());
     }
 
-    //Specify specific partition  topicPartitions = {@TopicPartition(topic = "java-topic-customer",partitions = {"2"})}
+    @RetryableTopic(attempts = "4", backoff = @Backoff(delay = 3000,multiplier = 1.5,maxDelay =15000 ))
+    @KafkaListener(id = "customer-consumer1", topics = "java-topic-customer",groupId = "group-customer")
+    public void customerConsumerHandlingError(Customer customer, @Header(KafkaHeaders.RECEIVED_TOPIC) String topic,
+                                              @Header(KafkaHeaders.OFFSET) int offset  )
+    {
+
+        logger.info("Customer consumed Event : {} from {} topic and partition {} and offset {} " ,customer.toString(),topic,offset);
+        if(customer.getId() == 101)
+        {
+            throw new RuntimeException("Invalid Customer Id");
+        }
+    }
+
+
+    @DltHandler
+    public void customerDltCustomer(Customer customer, @Header(KafkaHeaders.RECEIVED_TOPIC) String topic,
+                                              @Header(KafkaHeaders.OFFSET) int offset  )
+    {
+
+        logger.info("Customer consumed Event : {} from {} topic and partition {} and offset {} " ,customer.toString(),topic,offset);
+
+    }
+    /*///Specify specific partition  topicPartitions = {@TopicPartition(topic = "java-topic-customer",partitions = {"2"})}
     @KafkaListener(id = "customer-consumer0", topics = "java-topic-customer",groupId = "group-customer",
             topicPartitions = {@TopicPartition(topic = "java-topic-customer",partitions = {"2"})})
     public void customerConsumer1(Customer customer)
