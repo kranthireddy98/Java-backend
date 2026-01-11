@@ -14,6 +14,8 @@ import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.retry.annotation.Backoff;
 import org.springframework.stereotype.Service;
 
+import java.util.function.Predicate;
+
 @Service
 public class KafkaMessageListener {
 
@@ -27,6 +29,7 @@ public class KafkaMessageListener {
     {
         if (message.equals("user: 200"))
         {
+
             System.err.println("Critical error! Stopping consumer...");
             registry.getListenerContainer("consumer0").stop();
             return;

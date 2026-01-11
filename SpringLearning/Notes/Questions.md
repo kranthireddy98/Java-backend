@@ -77,4 +77,31 @@
 72. why is failing fast important?
 73. can autowiring cause circular dependencies?
 74. why constructor injection fails for circular dependencies?
-75. 
+# Scope
+75. What is default scope in Spring?
+76. When is the singleton bean created?
+77. Difference between singleton and prototype scope?
+78. Does Spring manage the full lifecycle of prototype beans?
+79. Does Spring calls destroy methods for prototype beans?
+80. Who is responsible for cleanup?
+81. What are request and session scopes?
+82. Are these scopes available in non-web apps?
+83. Are singleton beans thread-safe?
+84. How do you design thread-safe singleton beans?
+85. What happens if a prototype bean is injected into a singleton?
+86. How can it be solved?
+87. When would you use prototype scope?
+88. Why is prototype rarely used?
+# Scope Solutions
+89. Why does prototype injection into singleton not work as expected?
+90. When exactly does dependency injection happen?
+91. How do you get a new prototype bean everytime in a singleton?
+92. Which approach is preferred and why?
+93. What is `objectProvider`?
+94. Difference between `ObjectProvider` and `ObjectFactory`?
+95. What is `@Lookup` how does it work?
+96. why it is not commonly recommended?
+97. What are scoped proxies
+98. When are scope proxies required?
+99. Which solution would you use in production for prototype beans?
+100. can it handle optional beans?
