@@ -105,3 +105,12 @@
 98. When are scope proxies required?
 99. Which solution would you use in production for prototype beans?
 100. can it handle optional beans?
+# Configuration
+101. Difference between @Configuration and @Component?
+102. What happens if @Bean methods call each other?
+103. What is Full vs Lite configuration?
+104. Which one guarantees singleton behavior?
+105. What is proxyBeanMethods?
+106. When should it be set to false?
+107. Why should you avoid calling @Bean methods directly?
+108. When should you use @Bean instead of @Component?

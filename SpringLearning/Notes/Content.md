@@ -16,3 +16,5 @@ Lesson 6 --> Autowiring
 Lesson 7 --> Bean Scopes in spring
 
 Lesson 8 --> Advanced Scope Handling in Spring
+
+Lesson 9 --> Configuration

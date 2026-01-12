@@ -112,7 +112,7 @@ Special Behaviour: Exception Translation
 What is this means:
 
 * Low-level database exceptions (`SQLException`)
-* Are converted int Spring's unchecked `DataAccessException` hierarchy.
+* Are converted into Spring's unchecked `DataAccessException` hierarchy.
 * This happens through Spring’s internal `PersistenceExceptionTranslationPostProcessor`.
 
 **Why this matter**
