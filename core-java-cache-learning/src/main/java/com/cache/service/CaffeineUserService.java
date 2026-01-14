@@ -30,6 +30,7 @@ public class CaffeineUserService {
     private final AsyncLoadingCache<Integer,User> asyncCache =
             Caffeine.newBuilder()
                     .maximumSize(10_000)//Eviction
+                    .maximumWeight(20_000)
                     .expireAfterWrite(30,TimeUnit.MINUTES)//Hard TTL
                     .refreshAfterWrite(5,TimeUnit.MINUTES)// Refresh-ahead
                     .recordStats()//Metrics
