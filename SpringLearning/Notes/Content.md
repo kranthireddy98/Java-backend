@@ -18,3 +18,5 @@ Lesson 7 --> Bean Scopes in spring
 Lesson 8 --> Advanced Scope Handling in Spring
 
 Lesson 9 --> Configuration
+
+Lesson 10 --> Auto-configuration

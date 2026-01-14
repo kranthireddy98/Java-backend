@@ -114,3 +114,14 @@
 106. When should it be set to false?
 107. Why should you avoid calling @Bean methods directly?
 108. When should you use @Bean instead of @Component?
+# Auto-Configuration
+109. What is Spring Boot auto-Configuration
+110. is auto-configuration mandatory?
+111. How does Spring know what to auto-Configure?
+112. What was used before spring boot 2.7?
+113. What is `@EnableAutoConfiguration`?
+114. What does `@ConditionalOnMissingBean` do?
+115. why is this important?
+116. How do you debug auto-Configuration issue?
+117. Can auto-configuration be disabled?
+118. 
