@@ -1,9 +1,9 @@
-package com.threading;
+package com.concurrency;
 
 
 public class Main {
         public static void main(String[] args) throws InterruptedException {
-            MyThread thread1 = new MyThread();
+            ThreadExtends thread1 = new ThreadExtends();
 
             //Start a new thread
             thread1.start();
