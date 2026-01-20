@@ -81,6 +81,7 @@ class PaytmGateway implements PaymentGateway {
 }
 ```
 * Spring will inject `PytmGateWay`
+
 Rule:
 * Only one bean should be `@Primary`
 * Acts as default choice
