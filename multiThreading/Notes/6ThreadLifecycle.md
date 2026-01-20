@@ -126,3 +126,65 @@ notifyAll()
 | Needs synchronized | ❌            | ✅            |
 | Purpose            | Pause thread | Coordination |
 | Wakes on notify    | ❌            | ✅            |
+
+#### join()
+What does join() does
+
+Current thread waits until another thread finishes
+
+```
+t.join()
+```
+
+Internally:
+* Uses wait()
+* uses monitor on thread object
+
+#### Failing Code #3 -- Missing join()
+
+```java
+Thread t = new Thread(() -> {
+    // compute
+});
+t.start();
+
+System.out.println("Done"); //  may execute early
+
+```
+
+**Correct**
+```java
+t.start();
+t.join();
+System.out.println("Done");
+
+```
+
+#### Wait/notify Real World Use case
+Producer - Consumer
+```java
+class Buffer {
+    int data;
+    boolean hasData = false;
+
+    synchronized void produce(int value) throws InterruptedException {
+        while (hasData) wait();
+        data = value;
+        hasData = true;
+        notifyAll();
+    }
+
+    synchronized int consume() throws InterruptedException {
+        while (!hasData) wait();
+        hasData = false;
+        notifyAll();
+        return data;
+    }
+}
+
+```
+
+* Correct coordination
+* No busy waiting
+* Visibility + atomicity guaranteed
+
