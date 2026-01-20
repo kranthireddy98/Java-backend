@@ -18,3 +18,10 @@ Thread States
 #### Blocking Vs Waiting 
 
 **BLOCKED**
+* Waiting to acquire a lock
+* Caused by synchronized
+```java
+synchronized (lock){
+    //
+        }
+```
