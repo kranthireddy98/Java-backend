@@ -81,6 +81,7 @@ class PaytmGateway implements PaymentGateway {
 }
 ```
 * Spring will inject `PytmGateWay`
+
 Rule:
 * Only one bean should be `@Primary`
 * Acts as default choice
@@ -192,9 +193,13 @@ Also Supported
 | Request   | One per HTTP request              |
 
 ## Common pitfalls
+
 ❌ Multiple beans, no qualifier
+
 ❌ Field injection in production code
+
 ❌ Circular dependencies
+
 ❌ Relying on bean names
 
 
