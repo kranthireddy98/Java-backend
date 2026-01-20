@@ -193,9 +193,13 @@ Also Supported
 | Request   | One per HTTP request              |
 
 ## Common pitfalls
+
 ❌ Multiple beans, no qualifier
+
 ❌ Field injection in production code
+
 ❌ Circular dependencies
+
 ❌ Relying on bean names
 
 
