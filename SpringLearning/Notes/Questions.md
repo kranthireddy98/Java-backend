@@ -124,4 +124,12 @@
 115. why is this important?
 116. How do you debug auto-Configuration issue?
 117. Can auto-configuration be disabled?
-118. 
+# main()
+118. What happens when Spring boot application starts?
+119. When are beans actually created?
+120. When does auto-configuration happen?
+121. When are `@PostConstruct` methods called?
+122. When are AOP proxies created?
+123. Where do circular dependency errors occur?
+124. How do you run logic after application fully ready?
+125. 
