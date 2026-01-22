@@ -132,4 +132,14 @@
 122. When are AOP proxies created?
 123. Where do circular dependency errors occur?
 124. How do you run logic after application fully ready?
-125. 
+# Events
+125. What are Spring events?
+126. Are Spring events synchronous or asynchronous by default?
+127. How does Spring event publishing work internally?
+128. How are listeners discovered?
+129. What is the default execution model of Spring events?
+130. How do you make them asynchronous?
+131. What problem does @TransactionalEventListener solve?
+132. What happens if the transaction rolls back?
+133. Difference between @EventListener and @TransactionalEventListener?
+134. When should you avoid Spring events?
