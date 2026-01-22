@@ -1,113 +1,134 @@
-## Kafka Consumers
+## Consumer Groups & Parallelism 
 
-### What is a kafka Consumer
-A consumer is an application that:
-* Subscribed to one or more topics
-* Pulls records from Kafka
-* Processes them
-* Tracks progress using offset
+### What is Consumer Group?
 
-Kafka never pushes data to consumers
+A Group of consumers that work together to consume a topic.
 
-Consumers always ask for data
+Each partition is consumed by only one consumer within a group
 
-### Pull Model vs Push Model
-Push Model (traditional MQ)
-* Broker pushes messages
-* Consumer can get overwhelmed
-* hard to control backpressure
+### Why Consumer Groups exists
+Without consumer groupd:
+* One consumer --> slow
+* No parallelism
+* Scaling = painful
 
-kafka Pull Model
-* Consumer asks for data
-* Consumer controls speed
-* Natural backpressure handling
+With consumer groups:
+* add consumers
+* Kafka automatically balances load
+* Parallel processing achieved
 
-Kafka Chose Pull to let consumer process at their own pace and avoid overload
+### Partition <--> Consumer Mapping
+Scenario 1:
 
-### Consumer Poll Loop (Core Mechanism)
-Simplified Consumer Logic
-```java
-while (true) {
-   records = consumer.poll()
-   process(records)
-   commit offsets
-}
+* Topic : 3 partitions
+* Consumer group : 3 consumers
+``` 
+C1 → P0
+C2 → P1
+C3 → P2
 ```
-Key points:
-* `poll()` is mandatory
-* polling too slow --> consumer considered dead
-* Polling too fast --> empty response
+* Maximum parallelism
+* No conflicts
 
-### Offset Tracking (Consumer Responsibility)
-Very Important Concept
+Scenario 2: More consumers the partitiond
 
-kafka:
-* stores messages
-* Sores offsets
-
-But
-
-Kafka does not know if your business logic succeeded
-
-Consumer decide:
-* When to commit offset
-* What offset to commit
-
-### offset Commit Strategies
-
-Auto Commit
-* kafka commits periodically
-* simple
-* risky if processing fails
-
-manual Commit
-* commit after processing
-* Safer
-* Used in real systems
-
-real production uses manual
-
-### Consumer Lag
-Latest offset in partition - consumers commited offset
-
-```java
-Latest offset = 500
-Consumer offset = 480
-Lag = 20
+* Topi: 3 partitions
+* Consumers: 5
+``` 
+ C1 → P0
+C2 → P1
+C3 → P2
+C4 → idle
+C5 → idle
 ```
-High lag means:
-* Consumer is slow
-* system under pressure
-* Potential outage soon
+* Idle consumers
+* No benefit adding more consumers
 
-### What Happens When Consumer Crashes?
-scenario:
-* Consumer processed message
-* Did NOT commit offset
-* Crashed
+Scenario 3: More Partitions than Consumers
+* Topic: 6 partitions
+* Consumers : 3
+
+```
+C1 → P0, P1
+C2 → P2, P3
+C3 → P4, P5
+```
+* Works fine 
+* Each consumer processes multiple partitions
+
+### Consumer Groups vs Broadcast
+
+Same Group ID
+* Consumers share partitions
+* Each message processed once per group
+
+Different Group Id
+* Each group gets full copy of data
+* Used for
+  * Analytics
+  * Auditing
+  * Notifications
+
+Kafka supports fan-out natively
+
+
+### Group ID (How Kafka identifies groups)
+A consumer group is identified by:
+``` 
+group.id = "payment-service-group"
+```
+Kafka stores:
+* Group metadata
+* Partition assignments
+* Offsets
+
+Group Id defines who shares work and who gets full data
+
+### Group Coordinator
+Kafka Chooses:
+* One broker as group Coordinator
+* Handles
+  * Consumer joins
+  * Partition assignment
+  * Rebalancing
+
+Cosumers:
+* Send heartbeats
+* Coordinator tracks liveness
+
+### Parallelism Math
+
+Maximum Parallelism = Number of partitions
+
+NOT:
+* Number of consumers
+* Number of pods
+* Number of threads
+
+Want more parallelism?
+
+Increase partitions
+
+### Real-World Scenario
+
+Topic: orders
+
+Consumer Groups:
+* payment-service-group
+* inventory-service-group
+* email-service-group
+
+Each group:
+* gets all order events
+* Scales independently
+* Does not affect others
+
+### Very common mistakes
+
+Using same group Id across different services
 
 Result:
-* kafka re-sends messages
-* Duplicate processing possible
-
-This is at-least-once delivery
-
-### Multiple Consumers Reading same Topic
-Important distinction:
-* Same topic
-* Same consumer group -- partitions shares
-* Different consumer group -- fully copy of data
-
-Kafka supports fan-out naturally?
-
-### Consumer Configuration
-Key configs
-* max.poll.records
-* max.poll.interval.ms
-* session.timeout.ms
-
-These control:
-* Batch size
-* Rebalance safety
-* consumer liveness
+* Messages get split
+* Services miss data
+* Bugs that are VERY hard to debug
 

@@ -21,3 +21,9 @@
 21. What happens if a consumer crashes before committing offset?
 22. can multiple consumer read the same data?
 23. What happens if consumer doesn't call poll() frequently?
+24. Why can only one consumer read a partition in a group?
+25. What happens if consumers > partitions?
+26. How does kafka support multiple services reading same data?
+27. what is group id used for?
+28. How do you increase consumer parallelism
+29. What happens if two different applications use the same Group ID?
