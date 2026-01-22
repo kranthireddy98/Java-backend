@@ -15,3 +15,9 @@
 15. Can Kafka producer create duplicate messages?
 16. How does Kafka achieve high throughput on producer side?
 17. When would you choose acks=0?
+18. Why does Kafka use pull instead of push?
+19. what is consumer lag and why is it important
+20. Who manages offsets in kafka?
+21. What happens if a consumer crashes before committing offset?
+22. can multiple consumer read the same data?
+23. What happens if consumer doesn't call poll() frequently?
