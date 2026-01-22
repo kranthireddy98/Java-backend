@@ -7,4 +7,7 @@
 7. Why are Streams lazy
 8. when does stream execution actually start?
 9. can a stream exist without terminal operation?
-10. 
+10. Can we create stream from map?
+11. Difference between Arrays.strean() and Stream.of()?
+12. What happens if you don't limit an infinite stream?
+13. 
