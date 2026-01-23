@@ -154,4 +154,14 @@
 142. What is the default profile?
 143. When should you use `@profile` vs property-based config?
 144. Difference between `@VALUE` and `@ConfigurationProperties`?
-145. 
+# Transaction
+145. How does `@Transactional` work internally?
+146. What happens if there is no proxy
+147. Why doesn't `@Transactional` work on private methods?
+148. What about self-invocation?
+149. What is transaction propagation?
+150. Difference between REQUIRED and REQUIRED_NEW?
+151. When doe spring rollback a transaction?
+152. How do you roll back on checked exceptions?
+153. Can transactions work with async methods?
+154. How do you handle such cases?
