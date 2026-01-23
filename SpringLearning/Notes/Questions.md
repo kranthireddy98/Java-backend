@@ -143,3 +143,15 @@
 132. What happens if the transaction rolls back?
 133. Difference between @EventListener and @TransactionalEventListener?
 134. When should you avoid Spring events?
+# Profiles
+135. What is a Spring profile?
+136. How do you activate a profile?
+137. Difference between profiles and properties
+138. Can profile affect property loading?
+139. What id the property resolution order in Spring Boot?
+140. why is this important?
+141. What happens if no profile is active?
+142. What is the default profile?
+143. When should you use `@profile` vs property-based config?
+144. Difference between `@VALUE` and `@ConfigurationProperties`?
+145. 
