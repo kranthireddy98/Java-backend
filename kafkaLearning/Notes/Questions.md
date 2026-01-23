@@ -33,4 +33,9 @@
 33. How do you reduce rebalance impact?
 34. What happens if consumer processing takes too long?
 35. What is static membership?
-36. 
+36. How does Kafka prevent data loss?
+37. What is ISR and why is it important?
+38. What happens if leader broker crashes?
+39. Why combine acks=all with min.insync.replicas?
+40. Can Kafka lose data even with replication?
+41. 

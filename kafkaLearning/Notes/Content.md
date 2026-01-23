@@ -4,4 +4,4 @@
 4. Kafka Consumers
 5. Consumer Groups
 6. Rebalancing
-7. 
+7. Replication & Fault Tolerance
