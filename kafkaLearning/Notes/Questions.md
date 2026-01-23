@@ -27,3 +27,10 @@
 27. what is group id used for?
 28. How do you increase consumer parallelism
 29. What happens if two different applications use the same Group ID?
+30. What is Kafka rebalancing?
+31. Why is rebalancing harmful?
+32. What triggers a rebalance?
+33. How do you reduce rebalance impact?
+34. What happens if consumer processing takes too long?
+35. What is static membership?
+36. 
