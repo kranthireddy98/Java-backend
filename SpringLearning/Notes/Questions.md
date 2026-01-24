@@ -165,3 +165,15 @@
 152. How do you roll back on checked exceptions?
 153. Can transactions work with async methods?
 154. How do you handle such cases?
+# Spring JPA
+155. What is persistence context?
+156. How many persistence context per transaction?
+157. What is dirty checking?
+158. Why does LAzyInitializationException occur?
+159. Because lazy-laoded associations are accessed after the persitence context is closed
+160. How do you solve it properly?
+161. What is the N+1 select problem?
+162. ho do you prevent it?
+163. What is Open Session in View?
+164. should it be enabled in production?
+165. 
