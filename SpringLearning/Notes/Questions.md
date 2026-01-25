@@ -176,4 +176,12 @@
 162. ho do you prevent it?
 163. What is Open Session in View?
 164. should it be enabled in production?
-165. 
+# MVC
+165. What is DispatcherServlet
+166. What design pattern does it implement?
+167. How does Spring Know which controller method to call?
+168. Difference between Filter and Interceptor?
+169. When would you use each?
+170. How are controller method parameters resolved?
+171. How does Spring convert objects to JSON?
+172. 
