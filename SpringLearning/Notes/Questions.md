@@ -184,4 +184,11 @@
 169. When would you use each?
 170. How are controller method parameters resolved?
 171. How does Spring convert objects to JSON?
-172. 
+# Exception handling
+172. How does Spring handle exception internally?
+173. which resolver handles @ExceptionHandler?
+174. Difference between @ExceptionHandler and @ControllerAdvice?
+175. how do you return custom error responses in REST APIs?
+176. What is @ResponseStatus?
+177. when it is not enough?
+178. How do you handle validation errors?
