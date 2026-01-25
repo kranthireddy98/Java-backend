@@ -192,3 +192,12 @@
 176. What is @ResponseStatus?
 177. when it is not enough?
 178. How do you handle validation errors?
+# Spring Security
+179. How does Spring Security work internally?
+180. Where does DispatcherServlet fits in this flow?
+181. What is spring SecurityContext?
+182. when it is cleared?
+183. Difference between authentication and authorization?
+184. Why does Spring Security use filters instead of interceptors?
+185. Why CSRF enabled by default?
+186. 
