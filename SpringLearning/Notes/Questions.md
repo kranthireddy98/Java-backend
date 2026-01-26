@@ -230,3 +230,10 @@
 209. How do you handle duplicates?
 210. What is a dead letter topic?
 211. How does Kafka guarantee ordering?
+# Microservices
+212. When should you choose microservices over monolith?
+213. When is monolith better?
+214. Why is database-per-service important?
+215. How do you handle failures between services?
+216. Why are distributed transactions discouraged?
+217. 

@@ -42,3 +42,9 @@ Lesson 19 -- JWT & Token-Based Security
 Lesson 20 -- Caching in Spring 
 
 Lesson 21 -- Async & Scheduling
+
+Lesson 22 -- Spring Kafka
+
+Lesson 23 -- Micro Services
+
+Lesson 24 -- 
