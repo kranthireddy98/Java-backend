@@ -38,4 +38,11 @@
 38. What happens if leader broker crashes?
 39. Why combine acks=all with min.insync.replicas?
 40. Can Kafka lose data even with replication?
-41. 
+41. What determines Kafka delivery semantics?
+42. Why is at-least-once preferred?
+43. Explain at-most-once vs at-least-once
+44. Where are Kafka offsets stored?
+45. how do you handle duplicate messages?
+46. Can Kafka guarantee exactly-once?
+
+
