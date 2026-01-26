@@ -208,4 +208,11 @@
 190. Why do we disable sessions in JWT-based security?
 191. Why is JWT validation done on every request?
 192. What are common JWT pitfalls?
+# Cache
+193. How does Spring cache work internally?
+194. What happens call doesn't go through proxy?
+195. Difference between `@Cacheable` and `@CachePut`?
+196. How do you handle cache inconsistency?
+197. Why is redis preferred in distributed systems?
+198. What are common caching pitfalls?
 
