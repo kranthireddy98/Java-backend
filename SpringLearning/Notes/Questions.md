@@ -222,4 +222,11 @@
 202. Can transactions propagate to async methods?
 203. Difference between fixedRate and fixedDelay?
 204. What happens if a scheduled task throws an exception?
-205. 
+# Kafka
+205. Why use Kafka instead of REST calls?
+206. When would REST still be better?
+207. What is a consumer group?
+208. Why can Kafka deliver duplicate messages?
+209. How do you handle duplicates?
+210. What is a dead letter topic?
+211. How does Kafka guarantee ordering?
