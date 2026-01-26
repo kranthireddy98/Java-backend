@@ -167,7 +167,7 @@
 154. How do you handle such cases?
 # Spring JPA
 155. What is persistence context?
-156. How many persistence context per transaction?
+156. How many persistance context per transaction?
 157. What is dirty checking?
 158. Why does LAzyInitializationException occur?
 159. Because lazy-laoded associations are accessed after the persitence context is closed
@@ -215,4 +215,11 @@
 196. How do you handle cache inconsistency?
 197. Why is redis preferred in distributed systems?
 198. What are common caching pitfalls?
-
+# Async & Scheduling
+199. How does Async internally work?
+200. Why doesn't it work with self-invocation?
+201. WHy is the default async executor dangerous?
+202. Can transactions propagate to async methods?
+203. Difference between fixedRate and fixedDelay?
+204. What happens if a scheduled task throws an exception?
+205. 
