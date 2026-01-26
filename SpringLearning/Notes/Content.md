@@ -37,4 +37,6 @@ Lesson 17 -- Spring Exception Handling
 
 Lesson 18 -- Spring Security Fundamentals
 
+Lesson 19 -- JWT & Token-Based Security
+
 

@@ -200,4 +200,12 @@
 183. Difference between authentication and authorization?
 184. Why does Spring Security use filters instead of interceptors?
 185. Why CSRF enabled by default?
-186. 
+# JWT
+186. What is JWT and why is it used?
+187. is JWT encrypted or signed?
+188. How does JWT integrate with Spring Security?
+189. Where should this filter be placed?
+190. Why do we disable sessions in JWT-based security?
+191. Why is JWT validation done on every request?
+192. What are common JWT pitfalls?
+
