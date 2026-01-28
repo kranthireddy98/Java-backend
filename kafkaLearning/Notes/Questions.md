@@ -44,5 +44,12 @@
 44. Where are Kafka offsets stored?
 45. how do you handle duplicate messages?
 46. Can Kafka guarantee exactly-once?
+47. How does Kafka store messages on disk?
+48. Why is Kafka fast even though it uses disk?
+49. Does kafka delete messages after consumption?
+50. What is log compaction?
+51. What happens when retention expires?
+
+
 
 
