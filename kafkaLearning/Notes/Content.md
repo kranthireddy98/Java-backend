@@ -5,3 +5,6 @@
 5. Consumer Groups
 6. Rebalancing
 7. Replication & Fault Tolerance
+8. Offset Commit Strategies
+9. Kafka Storage & Log Internals
+10. ZooKeeper vs KRaft

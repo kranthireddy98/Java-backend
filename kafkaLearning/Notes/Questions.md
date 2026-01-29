@@ -49,6 +49,12 @@
 49. Does kafka delete messages after consumption?
 50. What is log compaction?
 51. What happens when retention expires?
+52. Why did kafka originally use Zookeeper?
+53. What problems did Zookeeper introduce?
+54. What is KRaft?
+55. Is Zookeeper still required for Kafka?
+56. What role does the Kafka controller play?
+
 
 
 
