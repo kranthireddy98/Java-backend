@@ -8,3 +8,4 @@
 8. Offset Commit Strategies
 9. Kafka Storage & Log Internals
 10. ZooKeeper vs KRaft
+11. Kafka Producer with Spring Boot

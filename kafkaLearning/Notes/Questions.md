@@ -54,7 +54,12 @@
 54. What is KRaft?
 55. Is Zookeeper still required for Kafka?
 56. What role does the Kafka controller play?
-
+57. How do you produce Kafka messages in Spring Boot?
+58. Why should you always send a key?
+59. How do you publish JSON messages?
+60. Is KafkaTemplate synchronous?
+61. How do ou handle producer failures?
+62. 
 
 
 
