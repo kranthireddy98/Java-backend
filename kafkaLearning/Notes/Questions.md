@@ -59,7 +59,12 @@
 59. How do you publish JSON messages?
 60. Is KafkaTemplate synchronous?
 61. How do ou handle producer failures?
-62. 
+62. How does spring boot consume Kafka messages?
+63. How do you control offset commits in Sping Kafka?
+64. What does `concurrency` mean in @KafkaListener?
+65. What happens if an exception occurs in @kafkaLsitenet?
+66. Why is idempotency important for consumers?
+
 
 
 
