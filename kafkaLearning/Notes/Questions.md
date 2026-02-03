@@ -64,7 +64,11 @@
 64. What does `concurrency` mean in @KafkaListener?
 65. What happens if an exception occurs in @kafkaLsitenet?
 66. Why is idempotency important for consumers?
-
+67. What happens if a consumer crashes before committing offset?
+68. What is a poison message?
+69. How do you prevent infinite retries?
+70. Why is idempotency important in Kafka consumers?
+71. Is exactly-once necessary in all systems?
 
 
 

@@ -10,3 +10,4 @@
 10. ZooKeeper vs KRaft
 11. Kafka Producer with Spring Boot
 12. Kafka Consumer with Spring boot
+13. Consumer Failures, Retries & Idempotent Processing
