@@ -69,6 +69,46 @@
 69. How do you prevent infinite retries?
 70. Why is idempotency important in Kafka consumers?
 71. Is exactly-once necessary in all systems?
+72. What is a Dead Letter topic?
+73. Why is DLT important?
+74. When should messages go to DLT?
+75. Does Kafka automatically support DLT?
+76. What happens to offsets when a message is sent to DLT?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
