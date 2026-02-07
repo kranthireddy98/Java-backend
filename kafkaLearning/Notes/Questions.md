@@ -74,6 +74,12 @@
 74. When should messages go to DLT?
 75. Does Kafka automatically support DLT?
 76. What happens to offsets when a message is sent to DLT?
+77. What does Kafka's exactly-once guarantee actually mean?
+78. Can Kafka guarantee exactly-once when writing to a database?
+79. What is the role of transactional.id?
+80. Is idempotence enough for exactly-once?
+81. When should you use Kafka transactions?
+
 
 
 
