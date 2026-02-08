@@ -79,8 +79,12 @@
 79. What is the role of transactional.id?
 80. Is idempotence enough for exactly-once?
 81. When should you use Kafka transactions?
-
-
+82. How do you increase Kafka throughput?
+83. How do you reduce Kafka Latency?
+84. What happens if processing takes longer than max.poll.interval.ms?
+85. Why is compression useful?
+86. Does increasing threads always improve Kafka performance?
+87. 
 
 
 

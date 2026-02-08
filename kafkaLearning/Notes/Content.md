@@ -12,3 +12,5 @@
 12. Kafka Consumer with Spring boot
 13. Consumer Failures, Retries & Idempotent Processing
 14. Dead Letter Topic
+15. Exactly-Once Semantics (EOS)
+16. Kafka Performance Tuning
