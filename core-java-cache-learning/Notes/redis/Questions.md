@@ -9,4 +9,7 @@
 9. What happens if one command takes long time?
 10. What internal data structure does Redis use for ZSET?
 11. Does redis use multi-threading?
-
+12. What happens when Redis memory is full?
+13. Difference between volatile-lru and allKeys-lru?
+14. What is better, LRU  or LFu?
+15. How do you prevent cache avalanche?
