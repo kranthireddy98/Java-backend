@@ -5,4 +5,8 @@
 5. What happens when TTl expires?
 6. What does TTl return?
 7. Difference between SET and SETEX?
-8. 
+8. Why is Redis single-threaded but still fast?
+9. What happens if one command takes long time?
+10. What internal data structure does Redis use for ZSET?
+11. Does redis use multi-threading?
+
