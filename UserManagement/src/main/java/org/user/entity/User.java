@@ -34,11 +34,22 @@ public class User {
     @JoinColumn(name = "department_id")
     private Department department;
 
-    @OneToOne(mappedBy = "user",cascade = CascadeType.ALL)
+
+    @ManyToOne
+    @JoinColumn(name = "address_id")
     private Address address;
 
-    @OneToMany(mappedBy = "user")
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,orphanRemoval = true)
     private List<UserRole> roles;
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 
     public void setId(Long id) {
         this.id = id;
