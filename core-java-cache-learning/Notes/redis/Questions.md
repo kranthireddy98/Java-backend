@@ -13,3 +13,11 @@
 13. Difference between volatile-lru and allKeys-lru?
 14. What is better, LRU  or LFu?
 15. How do you prevent cache avalanche?
+16. What is RDB?
+17. Can RDB lose data?
+18. Does RDB block redis
+19. What is copy-on-write?
+20. What is difference between RDB and AOF
+21. Which is safer?
+22. What is AOF rewrite?
+23. Does AOF block Redis?
