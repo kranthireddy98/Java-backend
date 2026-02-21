@@ -21,3 +21,12 @@
 21. Which is safer?
 22. What is AOF rewrite?
 23. Does AOF block Redis?
+24. If both AOF and RDB enabled, which loads first?
+25. Why enable both?
+26. What is best fsync mode for production?
+27. How much data loss possible with everysec?
+28. What caching pattern do you use in microservices?
+29. How do you handle stale data?
+30. What is cache breakdown?
+31. How do you prevent avalanche?
+
