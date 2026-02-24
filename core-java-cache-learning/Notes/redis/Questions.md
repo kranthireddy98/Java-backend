@@ -29,4 +29,14 @@
 29. How do you handle stale data?
 30. What is cache breakdown?
 31. How do you prevent avalanche?
+32. Why use Redis for sessions?
+33. What is the problem with sticky sessions?
+34. What happens if Redis crashes?
+35. How does Spring store sessions in Redis?
+36. How do you implement distributed lock in Redis?
+37. Why add expiration?
+38. Why use Lua for delete?
+39. Is Redis lock 100% safe?
+
+
 
