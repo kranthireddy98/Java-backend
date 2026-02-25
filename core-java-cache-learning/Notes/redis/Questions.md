@@ -37,6 +37,14 @@
 37. Why add expiration?
 38. Why use Lua for delete?
 39. Is Redis lock 100% safe?
+40. Difference between Pub/Sub and Streams?
+41. Is Redis a replacement for Kafka?
+42. How does Redis Streams handle failure?
+43. What happens if subscriber is offline in Pub/Sub?
+44. How would you implement rate limiting using Redis?
+45. Why is Lua required?
+46. Which is the best algorithm?
+47. What HTTP status used when limit exceeded?
 
 
 
