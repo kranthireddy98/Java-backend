@@ -45,6 +45,10 @@
 45. Why is Lua required?
 46. Which is the best algorithm?
 47. What HTTP status used when limit exceeded?
+48. Is Redis replication synchronous?
+49. Can data be lost in replication?
+50. Can replicas handle writes?
+51. What is PSYNC?
 
 
 
