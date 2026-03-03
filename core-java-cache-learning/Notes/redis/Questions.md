@@ -49,6 +49,10 @@
 49. Can data be lost in replication?
 50. Can replicas handle writes?
 51. What is PSYNC?
+52. What is Redis Sentinel?
+53. Does sentinel store data?
+54. What is Quorum?
+55. How long failover takes?
 
 
 
